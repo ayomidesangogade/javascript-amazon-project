@@ -1,4 +1,5 @@
 import { renderPaymentSummary } from "../scripts/checkout/paymentSummary.js";
+import { renderCheckoutHeader } from "../scripts/checkout/checkoutHeader.js";
 
 export let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -45,7 +46,7 @@ export function removeFromCart(productId) {
 
     cart = newCart;
 
-    updateCartQuantity();
+    renderCheckoutHeader();
     renderPaymentSummary();
     saveToStorage();
 }
@@ -60,10 +61,6 @@ export function calculateCartQuantity() {
     return cartQuantity;
 }
 
-export function updateCartQuantity() {
-    document.querySelector('.js-return-to-home-link').innerHTML = `${calculateCartQuantity()} items`;
-}
-
 export function updateQuantity(productId, newQuantity) {
     cart.forEach((cartItem) => {
         if (cartItem.productId === productId) {
@@ -71,6 +68,8 @@ export function updateQuantity(productId, newQuantity) {
         }
     });
 
+    renderCheckoutHeader();
+    renderPaymentSummary();
     saveToStorage();
 }
 
