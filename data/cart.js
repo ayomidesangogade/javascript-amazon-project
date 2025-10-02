@@ -1,16 +1,21 @@
 import { renderPaymentSummary } from "../scripts/checkout/paymentSummary.js";
 import { renderCheckoutHeader } from "../scripts/checkout/checkoutHeader.js";
 
-export let cart = JSON.parse(localStorage.getItem('cart')) || [];
+export let cart;
+
+export function loadFromStorage() {
+    cart = JSON.parse(localStorage.getItem('cart')) || [];
+}
 
 function saveToStorage() {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
 export function addToCart(productId) {
-    let quantity = document.querySelector(`.js-quantity-selector-${productId}`).value;
+    // let quantity = document.querySelector(`.js-quantity-selector-${productId}`).value;
 
-    quantity = Number(quantity);
+    // quantity = Number(quantity);
+    let quantity = 1;
 
     let matchingItem;
 
