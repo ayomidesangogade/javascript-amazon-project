@@ -22,7 +22,8 @@ export function renderOrderSummary() {
         const deliveryOption = getDeliveryOption(deliveryOptionId);
 
         checkOutHTML +=
-            `<div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
+            `<div class="cart-item-container
+            js-cart-item-container js-cart-item-container-${matchingProduct.id}">
             <div class="delivery-date">Delivery date: ${calculateDeliveryDate(deliveryOption)}</div>
                 <div class="cart-item-details-grid">
                 <img
@@ -35,14 +36,14 @@ export function renderOrderSummary() {
                     ${matchingProduct.name}
                     </div>
                     <div class="product-price">$${formatCurrency(matchingProduct.priceCents)}</div>
-                    <div class="product-quantity">
+                    <div class="product-quantity js-product-quantity-${matchingProduct.id}">
                     <span> Quantity: <span class="quantity-label js-quantity-label-${matchingProduct.id}">${quantity}</span> </span>
                     <span class="update-quantity-link link-primary js-update-quantity-link" data-product-id=${matchingProduct.id}>
                         Update
                     </span>
                     <input class="quantity-input js-quantity-input-${matchingProduct.id}" />
                     <span class="save-quantity-link link-primary js-save-quantity-link-${matchingProduct.id}">Save</span>
-                    <span class="delete-quantity-link link-primary js-delete-quantity-link" data-product-id=${matchingProduct.id}>
+                    <span class="delete-quantity-link link-primary js-delete-quantity-link js-delete-quantity-link-${matchingProduct.id}" data-product-id=${matchingProduct.id}>
                         Delete
                     </span>
                     <div class="validation-message js-validation-message-${matchingProduct.id}"></div>
