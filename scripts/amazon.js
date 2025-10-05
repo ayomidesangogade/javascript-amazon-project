@@ -1,10 +1,10 @@
-import { cart, addToCart, calculateCartQuantity } from "../data/cart.js";
+import { addToCart, calculateCartQuantity } from "../data/cart.js";
 // import { cart as myCart } from "../data/cart.js";
 // import * as cartModule from '../data/cart.js';
 // cartModule.cart;
 // cartModule.addToCart('id');
 import { products } from "../data/products.js";
-import { formatCurrency } from "./utils.js/money.js";
+import { formatCurrency } from "../../scripts/utils/money.js";
 
 let productsHTML = '';
 

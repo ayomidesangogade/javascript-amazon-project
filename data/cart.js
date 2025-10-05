@@ -3,6 +3,8 @@ import { renderCheckoutHeader } from "../scripts/checkout/checkoutHeader.js";
 
 export let cart;
 
+loadFromStorage();
+
 export function loadFromStorage() {
     cart = JSON.parse(localStorage.getItem('cart')) || [];
 }
