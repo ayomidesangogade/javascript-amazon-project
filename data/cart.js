@@ -1,5 +1,6 @@
 import { renderPaymentSummary } from "../scripts/checkout/paymentSummary.js";
 import { renderCheckoutHeader } from "../scripts/checkout/checkoutHeader.js";
+import { deliveryOptions } from "./deliveryOptions.js";
 
 export let cart;
 
@@ -14,10 +15,10 @@ function saveToStorage() {
 }
 
 export function addToCart(productId) {
-    // let quantity = document.querySelector(`.js-quantity-selector-${productId}`).value;
+    let quantity = document.querySelector(`.js-quantity-selector-${productId}`).value;
 
-    // quantity = Number(quantity);
-    let quantity = 1;
+    quantity = Number(quantity);
+    // let quantity = 1; for testing
 
     let matchingItem;
 
@@ -89,7 +90,13 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
         }
     });
 
-    matchingItem.deliveryOptionId = deliveryOptionId;
+    const deliveryOptionIdExists = deliveryOptions.find((option) => option.id === deliveryOptionId);
+
+    if (matchingItem && deliveryOptionIdExists) {
+        matchingItem.deliveryOptionId = deliveryOptionId;
+    } else {
+        return;
+    }
 
     saveToStorage();
 }

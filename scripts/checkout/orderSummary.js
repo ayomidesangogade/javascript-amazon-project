@@ -74,8 +74,8 @@ export function renderOrderSummary() {
                 <input
                     type="radio"
                     ${isChecked ? 'checked' : ''}
-                    class="delivery-option-input"
-                    name="delivery-option-${matchingProduct.id} js-delivery-option-${matchingProduct.id} js-delivery-option-${deliveryOption.id}"
+                    class="delivery-option-input js-delivery-option-input-${matchingProduct.id} js-delivery-option-input-${deliveryOption.id}"
+                    name="delivery-option-${matchingProduct.id}"
                 />
                 <div>
                     <div class="delivery-option-date">${dateString}</div>
@@ -131,7 +131,7 @@ export function renderOrderSummary() {
             });
 
             document.querySelector(`.js-quantity-input-${productId}`).addEventListener('keydown', (event) => {
-                console.log(event);
+
                 if (event.key === 'Enter') {
                     const quantity = Number(document.querySelector(`.js-quantity-input-${productId}`).value);
 

@@ -16,11 +16,11 @@ describe('test suite: renderOrderSummary', () => {
         spyOn(localStorage, 'getItem').and.callFake(() => {
             return JSON.stringify([{
                 productId: productId1,
-                quantity: 1,
+                quantity: 2,
                 deliveryOptionId: "1"
             }, {
                 productId: productId2,
-                quantity: 2,
+                quantity: 1,
                 deliveryOptionId: '2'
             }]);
         });
@@ -35,8 +35,8 @@ describe('test suite: renderOrderSummary', () => {
 
     it('displays the cart', () => {
         expect(document.querySelectorAll('.js-cart-item-container').length).toEqual(2);
-        expect(document.querySelector(`.js-product-quantity-${productId1}`).innerText).toContain('Quantity: 1');
-        expect(document.querySelector(`.js-product-quantity-${productId2}`).innerText).toContain('Quantity: 2');
+        expect(document.querySelector(`.js-product-quantity-${productId1}`).innerText).toContain('Quantity: 2');
+        expect(document.querySelector(`.js-product-quantity-${productId2}`).innerText).toContain('Quantity: 1');
     });
 
     it('removes a product', () => {
@@ -58,6 +58,10 @@ describe('test suite: renderOrderSummary', () => {
     });
 
     it('updates delivery option', () => {
-
+        document.querySelector(`.js-delivery-option-${productId1}.js-delivery-option-3`).click();
+        expect(document.querySelector(`.js-delivery-option-input-${productId1}.js-delivery-option-input-3`).checked).toEqual(true);
+        expect(cart[0].deliveryOptionId).toEqual("3");
+        expect(document.querySelector('.js-shipping-payment-summary').innerText).toEqual('$14.98');
+        expect(document.querySelector('.js-total-payment-summary').innerText).toEqual('$63.50');
     });
 })
