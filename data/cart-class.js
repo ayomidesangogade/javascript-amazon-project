@@ -3,15 +3,20 @@ import { renderCheckoutHeader } from "../scripts/checkout/checkoutHeader.js";
 import { deliveryOptions } from "./deliveryOptions.js";
 
 class Cart {
-    cartItems = undefined;
-    localStorageKey = undefined;
+    cartItems;
+    #localStorageKey; //same thing as localStorageKey = undefined
 
-    loadFromStorage() {
-        this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey)) || [];
+    constructor(localStorageKey) {
+        this.#localStorageKey = localStorageKey;
+        this.#loadFromStorage();
+    }
+
+    #loadFromStorage() {
+        this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey)) || [];
     };
 
     saveToStorage() {
-        localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+        localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
     };
 
     addToCart(productId) {
@@ -104,17 +109,9 @@ class Cart {
 }
 
 // Each object generated from a class is called an instance of the class
-const cart = new Cart();
-const businessCart = new Cart();
-
-cart.localStorageKey = 'cart-oop';
-businessCart.localStorageKey = 'cart-business';
-
-cart.loadFromStorage();
-
-businessCart.loadFromStorage();
-
+const cart = new Cart('cart-oop');
+const businessCart = new Cart('cart-business');
 
 console.log(cart);
 console.log(businessCart);
-console.log
+console.log(businessCart instanceof Cart);
