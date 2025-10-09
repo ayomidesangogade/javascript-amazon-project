@@ -47,6 +47,8 @@ products.forEach((product) => {
               <option value="10">10</option>
             </select>
           </div>
+          
+          ${product.extraInfoHTML()}
 
           <div class="product-spacer"></div>
 
@@ -62,6 +64,7 @@ products.forEach((product) => {
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
+// Polymorphism = use a method without knowing the class
 // document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 //     button.addEventListener('click', () => {
 //         const productId = button.dataset.productId;
