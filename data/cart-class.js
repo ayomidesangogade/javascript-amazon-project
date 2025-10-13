@@ -20,11 +20,11 @@ class Cart {
     };
 
     addToCart(productId) {
-        // let quantity = document.querySelector(`.js-quantity-selector-${productId}`).value;
+        let quantity = document.querySelector(`.js-quantity-selector-${productId}`).value;
 
-        // quantity = Number(quantity);
+        quantity = Number(quantity);
         // for testing
-        let quantity = 1;
+        // let quantity = 1;
 
         let matchingItem;
 
@@ -109,7 +109,7 @@ class Cart {
 }
 
 // Each object generated from a class is called an instance of the class
-const cart = new Cart('cart-oop');
+export const cart = new Cart('cart-oop');
 const businessCart = new Cart('cart-business');
 
 console.log(cart);

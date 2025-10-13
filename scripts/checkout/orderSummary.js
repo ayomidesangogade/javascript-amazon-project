@@ -1,4 +1,5 @@
-import { cart, removeFromCart, updateQuantity, updateDeliveryOption } from "../../data/cart.js";
+// import { cart, removeFromCart, updateQuantity, updateDeliveryOption } from "../../data/cart.js";
+import { cart } from "../../data/cart-class.js";
 import { deliveryOptions, calculateDeliveryDate } from "../../data/deliveryOptions.js";
 import { products } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
@@ -11,7 +12,7 @@ import { renderPaymentSummary } from "./paymentSummary.js";
 export function renderOrderSummary() {
     let checkOutHTML = '';
 
-    cart.forEach((cartItem) => {
+    cart.cartItems.forEach((cartItem) => {
         const productId = cartItem.productId;
         const quantity = cartItem.quantity;
 
@@ -92,7 +93,7 @@ export function renderOrderSummary() {
         link.addEventListener('click', () => {
             const productId = link.dataset.productId;
 
-            removeFromCart(productId);
+            cart.removeFromCart(productId);
 
             // const container = document.querySelector(`.js-cart-item-container-${productId}`);
 
@@ -117,7 +118,7 @@ export function renderOrderSummary() {
                     document.querySelector(`.js-validation-message-${productId}`).innerHTML = 'Invalid input';
                     document.querySelector(`.js-validation-message-${productId}`).style.color = 'red';
                 } else if (quantity >= 0 && quantity < 1000) {
-                    updateQuantity(productId, quantity);
+                    cart.updateQuantity(productId, quantity);
                     document.querySelector(`.js-validation-message-${productId}`).innerHTML = '';
                 } else if (quantity < 0) {
                     document.querySelector(`.js-validation-message-${productId}`).innerHTML = 'Quantity can never be less than zero';
@@ -139,7 +140,7 @@ export function renderOrderSummary() {
                         document.querySelector(`.js-validation-message-${productId}`).innerHTML = 'Invalid input';
                         document.querySelector(`.js-validation-message-${productId}`).style.color = 'red';
                     } else if (quantity >= 0 && quantity < 1000) {
-                        updateQuantity(productId, quantity);
+                        cart.updateQuantity(productId, quantity);
                         document.querySelector(`.js-validation-message-${productId}`).innerHTML = '';
                     } else if (quantity < 0) {
                         document.querySelector(`.js-validation-message-${productId}`).innerHTML = 'Quantity can never be less than zero';
@@ -166,7 +167,7 @@ export function renderOrderSummary() {
     document.querySelectorAll('.js-delivery-option').forEach((element) => {
         element.addEventListener('click', () => {
             const { productId, deliveryOptionId } = element.dataset;
-            updateDeliveryOption(productId, deliveryOptionId);
+            cart.updateDeliveryOption(productId, deliveryOptionId);
             renderOrderSummary();
             renderPaymentSummary();
         });
