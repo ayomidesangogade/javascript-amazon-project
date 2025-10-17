@@ -136,3 +136,30 @@ const rectangle = new Rectangle({ length: 12, breadth: 23 });
 rectangle.getArea();
 const circle = new Circle(12);
 circle.getArea();
+
+class Animal {
+    sound;
+    animal;
+
+    constructor() {
+        this.animal = '';
+        this.sound = '';
+    }
+    speak() {
+        console.log(`${this.animal} ${this.sound}`);
+    }
+}
+
+class Dog extends Animal {
+    constructor() {
+        super();
+        this.animal = 'Dog';
+        this.sound = 'barks';
+    }
+    speak() {
+        console.log(`${this.animal} ${this.sound}`);
+    }
+}
+
+const dog = new Dog();
+dog.speak();
