@@ -163,3 +163,30 @@ class Dog extends Animal {
 
 const dog = new Dog();
 dog.speak();
+
+class MathHelper {
+    a;
+    b;
+
+    constructor(a, b) {
+        this.a = a;
+        this.b = b;
+    }
+
+    add() {
+        console.log(this.a + this.b);
+    }
+
+    subtract() {
+        console.log(this.a - this.b);
+    }
+
+    multiply() {
+        console.log(this.a * this.b);
+    }
+}
+
+const mathHelper = new MathHelper(5, 6);
+mathHelper.add();
+mathHelper.subtract();
+mathHelper.multiply();
